@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   description: "Threads application",
 };
 
+const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
+
 export default function RootLayout({
   children,
 }: {
@@ -22,26 +24,26 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider
-  publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-  appearance={{
-    baseTheme: dark,
-  }}
->
-  <html lang="en">
-    <body className={inter.className}>
-      <Topbar />
-      <main className='flex flex-row'>
-        <LeftSidebar />
-        <section className='main-container'>
-          <div className='w-full max-w-4xl'>
-            {children}
-          </div>
-        </section>
-        <RightSidebar />
-      </main>
-      <Bottombar />
-    </body>
-  </html>
-</ClerkProvider>
+      publishableKey={publishableKey}
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
+      <html lang="en">
+        <body className={inter.className}>
+          <Topbar />
+          <main className='flex flex-row'>
+            <LeftSidebar />
+            <section className='main-container'>
+              <div className='w-full max-w-4xl'>
+                {children}
+              </div>
+            </section>
+            <RightSidebar />
+          </main>
+          <Bottombar />
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
